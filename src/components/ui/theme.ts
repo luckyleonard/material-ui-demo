@@ -1,5 +1,4 @@
 import { createMuiTheme } from '@material-ui/core/styles';
-import { CommonColors } from '@material-ui/core/styles/createPalette';
 
 declare module '@material-ui/core/styles/createPalette' {
   interface CommonColors {

@@ -3,7 +3,8 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
+
+import appLogo from 'assets/logo.svg';
 
 interface ElevationScrollProps {
   children: React.ReactElement;
@@ -24,6 +25,10 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     toolbarMargin: {
       ...theme.mixins.toolbar, //将toolbar的css解构给下面的占位div
+      marginBottom: '3rem',
+    },
+    logo: {
+      height: '7rem',
     },
   })
 );
@@ -34,8 +39,9 @@ const Header: FC = () => {
     <>
       <ElevationScroll>
         <AppBar position='fixed'>
-          <Toolbar>
-            <Typography variant='h3'>AC Component</Typography>
+          <Toolbar disableGutters>
+            {/* 禁止左右margin */}
+            <img src={appLogo} alt='Company logo' />
           </Toolbar>
         </AppBar>
       </ElevationScroll>
