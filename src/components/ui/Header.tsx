@@ -1,6 +1,8 @@
 import React, { FC, ReactElement } from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 
@@ -25,10 +27,22 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     toolbarMargin: {
       ...theme.mixins.toolbar, //将toolbar的css解构给下面的占位div
-      marginBottom: '3rem',
+      marginBottom: '1rem',
     },
     logo: {
-      height: '7rem',
+      height: '5rem',
+    },
+    tabContainer: {
+      marginLeft: 'auto', //push all tabs to the right
+    },
+    tab: {
+      fontFamily: 'Railway',
+      textTransform: 'none', //change the auto upper case from button
+      fontWeight: 700,
+      fontSize: '1rem', //use rem for the element itself
+      minWidth: '10px',
+      marginLeft: '25px', //use specific pixel for the spacing
+      borderRadius: '20%',
     },
   })
 );
@@ -42,6 +56,13 @@ const Header: FC = () => {
           <Toolbar disableGutters>
             {/* 禁止左右margin */}
             <img src={appLogo} alt='Company logo' />
+            <Tabs className={classes.tabContainer}>
+              <Tab className={classes.tab} label='Home' />
+              <Tab className={classes.tab} label='Services' />
+              <Tab className={classes.tab} label='The Revolution' />
+              <Tab className={classes.tab} label='About Us' />
+              <Tab className={classes.tab} label='Contact Us' />
+            </Tabs>
           </Toolbar>
         </AppBar>
       </ElevationScroll>
