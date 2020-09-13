@@ -36,10 +36,7 @@ const useStyles = makeStyles((theme: Theme) =>
       marginLeft: 'auto', //push all tabs to the right
     },
     tab: {
-      fontFamily: 'Railway',
-      textTransform: 'none', //change the auto upper case from button
-      fontWeight: 700,
-      fontSize: '1rem', //use rem for the element itself
+      ...theme.typography.tab,
       minWidth: '10px',
       marginLeft: '25px', //use specific pixel for the spacing
       borderRadius: '20%',
