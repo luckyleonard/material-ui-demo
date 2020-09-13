@@ -1,8 +1,9 @@
-import React, { FC, ReactElement } from 'react';
+import React, { ChangeEvent, FC, useState } from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
+import Button from '@material-ui/core/Button';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 
@@ -41,11 +42,22 @@ const useStyles = makeStyles((theme: Theme) =>
       marginLeft: '25px', //use specific pixel for the spacing
       borderRadius: '20%',
     },
+    button: {
+      ...theme.typography.estimate,
+      borderRadius: 50,
+      height: 45,
+      marginLeft: 50,
+      marginRight: 25,
+    },
   })
 );
 
 const Header: FC = () => {
   const classes = useStyles();
+  const [tabValue, setTabValue] = useState(0);
+  const handleTabChange = (e: ChangeEvent<{}>, newValue: number) => {
+    setTabValue(newValue);
+  };
   return (
     <>
       <ElevationScroll>
@@ -53,13 +65,23 @@ const Header: FC = () => {
           <Toolbar disableGutters>
             {/* 禁止左右margin */}
             <img src={appLogo} alt='Company logo' />
-            <Tabs className={classes.tabContainer}>
+            <Tabs
+              className={classes.tabContainer}
+              value={tabValue}
+              onChange={handleTabChange}
+              indicatorColor='primary'>
               <Tab className={classes.tab} label='Home' />
               <Tab className={classes.tab} label='Services' />
               <Tab className={classes.tab} label='The Revolution' />
               <Tab className={classes.tab} label='About Us' />
               <Tab className={classes.tab} label='Contact Us' />
             </Tabs>
+            <Button
+              variant='contained'
+              color='secondary'
+              className={classes.button}>
+              Free Estimate
+            </Button>
           </Toolbar>
         </AppBar>
       </ElevationScroll>

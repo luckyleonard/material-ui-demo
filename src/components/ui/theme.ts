@@ -10,9 +10,11 @@ declare module '@material-ui/core/styles/createTypography' {
   // modefied the right module
   interface Typography {
     tab: TypographyStyle;
+    estimate: TypographyStyle;
   } //define the return Typography in the Theme
   interface TypographyOptions {
     tab?: TypographyStyleOptions;
+    estimate?: TypographyStyleOptions;
   } //allow it to config in the Options
 }
 
@@ -34,9 +36,15 @@ const theme = createMuiTheme({
   typography: {
     tab: {
       fontFamily: 'Raleway',
+      fontSize: '1rem', //use rem for the element itself
       textTransform: 'none', //change the auto upper case from button
       fontWeight: 700,
-      fontSize: '1rem', //use rem for the element itself
+    },
+    estimate: {
+      fontFamily: 'Pacifico',
+      fontSize: '1rem',
+      textTransform: 'none',
+      color: 'white',
     },
   },
 });
