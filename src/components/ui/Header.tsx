@@ -56,6 +56,30 @@ const pathToTab: PathToTabType[] = [
   },
 ];
 
+type menuOptionType = {
+  name: string;
+  link: string;
+};
+
+const menuOptions: menuOptionType[] = [
+  {
+    name: 'Services',
+    link: '/services',
+  },
+  {
+    name: 'Custome Software Development',
+    link: '/customsoftware',
+  },
+  {
+    name: 'Mobile App Development',
+    link: '/mobileapps',
+  },
+  {
+    name: 'Website Development',
+    link: '/websites',
+  },
+];
+
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     toolbarMargin: {
@@ -107,6 +131,7 @@ const Header: FC = () => {
   const [tabValue, setTabValue] = useState(0);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [open, setOpen] = useState(false);
+  const [selectedIndex, setSelectedIndex] = useState(0);
 
   const handleTabChange = (e: ChangeEvent<{}>, newValue: number) => {
     setTabValue(newValue);
@@ -115,6 +140,11 @@ const Header: FC = () => {
   const handleMenuOpen = (e: MouseEvent<HTMLElement>) => {
     setAnchorEl(e.currentTarget);
     setOpen(true);
+  };
+
+  const handleMenuClick = (index: number) => {
+    setSelectedIndex(index);
+    handleMenuClose();
   };
 
   const handleMenuClose = () => {
@@ -192,6 +222,7 @@ const Header: FC = () => {
               className={classes.button}>
               Free Estimate
             </Button>
+
             <Menu
               id='services-menu'
               anchorEl={anchorEl}
@@ -200,34 +231,18 @@ const Header: FC = () => {
               MenuListProps={{ onMouseLeave: handleMenuClose }}
               classes={{ paper: classes.menu }}
               elevation={0}>
-              <MenuItem
-                onClick={handleMenuClose}
-                component={Link}
-                to='/services'
-                classes={{ root: classes.menuItem }}>
-                Services
-              </MenuItem>
-              <MenuItem
-                onClick={handleMenuClose}
-                component={Link}
-                to='/customsoftware'
-                classes={{ root: classes.menuItem }}>
-                Custome Software Development
-              </MenuItem>
-              <MenuItem
-                onClick={handleMenuClose}
-                component={Link}
-                to='/mobileapps'
-                classes={{ root: classes.menuItem }}>
-                Mobile App Development
-              </MenuItem>
-              <MenuItem
-                onClick={handleMenuClose}
-                component={Link}
-                to='/websites'
-                classes={{ root: classes.menuItem }}>
-                Website Development
-              </MenuItem>
+              {/* elevation for layer */}
+              {menuOptions.map((option, index) => (
+                <MenuItem
+                  key={option.name + index}
+                  component={Link}
+                  to={option.link}
+                  classes={{ root: classes.menuItem }}
+                  onClick={() => handleMenuClick(index)}
+                  selected={selectedIndex === index && tabValue === 1}>
+                  {option.name}
+                </MenuItem>
+              ))}
             </Menu>
           </Toolbar>
         </AppBar>
