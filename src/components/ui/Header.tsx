@@ -28,12 +28,12 @@ const ElevationScroll: FC<ElevationScrollProps> = ({ children }) => {
   }); //包裹的孩子都会根据trigger变换elevation
 };
 
-type PathToValueType = {
+type PathToTabType = {
   pathes: string[];
   value: number;
 };
 
-const pathToValue: PathToValueType[] = [
+const pathToTab: PathToTabType[] = [
   {
     pathes: ['/'],
     value: 0,
@@ -87,6 +87,17 @@ const useStyles = makeStyles((theme: Theme) =>
       marginLeft: 50,
       marginRight: 25,
     },
+    menu: {
+      backgroundColor: theme.palette.common.blue,
+      color: 'white',
+    },
+    menuItem: {
+      ...theme.typography.tab,
+      opacity: 0.7,
+      '&:hover': {
+        opacity: 1,
+      },
+    },
   })
 );
 
@@ -112,7 +123,7 @@ const Header: FC = () => {
   };
 
   useEffect(() => {
-    pathToValue.forEach((item) => {
+    pathToTab.forEach((item) => {
       if (
         item.pathes.find((path) => path === location.pathname) &&
         tabValue !== item.value
@@ -127,7 +138,7 @@ const Header: FC = () => {
       <ElevationScroll>
         <AppBar position='fixed'>
           <Toolbar disableGutters>
-            {/* 禁止左右margin */}
+            {/* disableGutters 禁止左右margin */}
             <Button
               component={Link}
               to='/'
@@ -186,29 +197,35 @@ const Header: FC = () => {
               anchorEl={anchorEl}
               open={open}
               onClose={handleMenuClose}
-              MenuListProps={{ onMouseLeave: handleMenuClose }}>
+              MenuListProps={{ onMouseLeave: handleMenuClose }}
+              classes={{ paper: classes.menu }}
+              elevation={0}>
               <MenuItem
                 onClick={handleMenuClose}
                 component={Link}
-                to='/services'>
+                to='/services'
+                classes={{ root: classes.menuItem }}>
                 Services
               </MenuItem>
               <MenuItem
                 onClick={handleMenuClose}
                 component={Link}
-                to='/customsoftware'>
+                to='/customsoftware'
+                classes={{ root: classes.menuItem }}>
                 Custome Software Development
               </MenuItem>
               <MenuItem
                 onClick={handleMenuClose}
                 component={Link}
-                to='/mobileapps'>
+                to='/mobileapps'
+                classes={{ root: classes.menuItem }}>
                 Mobile App Development
               </MenuItem>
               <MenuItem
                 onClick={handleMenuClose}
                 component={Link}
-                to='/websites'>
+                to='/websites'
+                classes={{ root: classes.menuItem }}>
                 Website Development
               </MenuItem>
             </Menu>
