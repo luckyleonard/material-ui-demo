@@ -1,9 +1,11 @@
-import React, { ChangeEvent, FC, useState, useEffect } from 'react';
+import React, { ChangeEvent, MouseEvent, FC, useState, useEffect } from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Button from '@material-ui/core/Button';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 
@@ -27,29 +29,29 @@ const ElevationScroll: FC<ElevationScrollProps> = ({ children }) => {
 };
 
 type PathToValueType = {
-  path: string;
+  pathes: string[];
   value: number;
 };
 
 const pathToValue: PathToValueType[] = [
   {
-    path: '/',
+    pathes: ['/'],
     value: 0,
   },
   {
-    path: '/services',
+    pathes: ['/services', '/customsoftware', '/mobileapps', '/websites'],
     value: 1,
   },
   {
-    path: '/revolution',
+    pathes: ['/revolution'],
     value: 2,
   },
   {
-    path: '/about',
+    pathes: ['/about'],
     value: 3,
   },
   {
-    path: '/contact',
+    pathes: ['/contact'],
     value: 4,
   },
 ];
@@ -92,13 +94,29 @@ const Header: FC = () => {
   const classes = useStyles();
   const location = useLocation();
   const [tabValue, setTabValue] = useState(0);
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const [open, setOpen] = useState(false);
+
   const handleTabChange = (e: ChangeEvent<{}>, newValue: number) => {
     setTabValue(newValue);
   };
 
+  const handleMenuOpen = (e: MouseEvent<HTMLElement>) => {
+    setAnchorEl(e.currentTarget);
+    setOpen(true);
+  };
+
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+    setOpen(false);
+  };
+
   useEffect(() => {
     pathToValue.forEach((item) => {
-      if (item.path === location.pathname && tabValue !== item.value) {
+      if (
+        item.pathes.find((path) => path === location.pathname) &&
+        tabValue !== item.value
+      ) {
         setTabValue(item.value);
       }
     });
@@ -134,6 +152,9 @@ const Header: FC = () => {
                 label='Services'
                 component={Link}
                 to='/services'
+                aria-owns={anchorEl ? 'services-menu' : undefined}
+                aria-haspopup={anchorEl ? true : undefined}
+                onMouseOver={handleMenuOpen}
               />
               <Tab
                 className={classes.tab}
@@ -160,6 +181,37 @@ const Header: FC = () => {
               className={classes.button}>
               Free Estimate
             </Button>
+            <Menu
+              id='services-menu'
+              anchorEl={anchorEl}
+              open={open}
+              onClose={handleMenuClose}
+              MenuListProps={{ onMouseLeave: handleMenuClose }}>
+              <MenuItem
+                onClick={handleMenuClose}
+                component={Link}
+                to='/services'>
+                Services
+              </MenuItem>
+              <MenuItem
+                onClick={handleMenuClose}
+                component={Link}
+                to='/customsoftware'>
+                Custome Software Development
+              </MenuItem>
+              <MenuItem
+                onClick={handleMenuClose}
+                component={Link}
+                to='/mobileapps'>
+                Mobile App Development
+              </MenuItem>
+              <MenuItem
+                onClick={handleMenuClose}
+                component={Link}
+                to='/websites'>
+                Website Development
+              </MenuItem>
+            </Menu>
           </Toolbar>
         </AppBar>
       </ElevationScroll>
