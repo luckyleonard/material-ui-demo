@@ -13,7 +13,7 @@ import {
 } from '@material-ui/core/styles';
 
 import appLogo from 'assets/logo.svg';
-import { ElevationScroll, NavTabs } from './components';
+import { ElevationScroll, NavDrawer, NavTabs } from './components';
 
 type PathToTabType = {
   pathes: string[];
@@ -47,21 +47,21 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     toolbarMargin: {
       ...theme.mixins.toolbar, //将toolbar的css解构给下面的占位div
-      marginBottom: '1.5rem',
+      marginBottom: '3rem',
       [theme.breakpoints.down('sm')]: {
-        marginBottom: '0.5rem',
+        marginBottom: '2rem',
       },
       [theme.breakpoints.down('xs')]: {
-        marginBottom: 0,
+        marginBottom: '1.5rem',
       },
     },
     logo: {
-      height: '6rem',
+      height: '7rem',
       [theme.breakpoints.down('sm')]: {
-        height: '5rem',
+        height: '6rem',
       },
       [theme.breakpoints.down('xs')]: {
-        height: '3.5rem',
+        height: '5rem',
       },
     },
     logoContainer: {
@@ -110,7 +110,9 @@ const Header: FC = () => {
               {/* disableRipple use to stop the click animation*/}
               <img src={appLogo} alt='Company logo' className={classes.logo} />
             </Button>
-            {matches ? null : (
+            {matches ? (
+              <NavDrawer />
+            ) : (
               <NavTabs tabValue={tabValue} handleTabChange={handleTabChange} />
             )}
           </Toolbar>
