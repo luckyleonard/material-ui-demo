@@ -41,6 +41,10 @@ const pathToTab: PathToTabType[] = [
     pathes: ['/contact'],
     value: 4,
   },
+  {
+    pathes: ['/estimate'],
+    value: 5,
+  },
 ];
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -111,7 +115,7 @@ const Header: FC = () => {
               <img src={appLogo} alt='Company logo' className={classes.logo} />
             </Button>
             {matches ? (
-              <NavDrawer />
+              <NavDrawer tabValue={tabValue} />
             ) : (
               <NavTabs tabValue={tabValue} handleTabChange={handleTabChange} />
             )}

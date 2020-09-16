@@ -9,37 +9,48 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 
+export type NavDrawerProps = {
+  tabValue: number;
+};
+
 const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
 
 type ListItemType = {
   text: string;
   to: string;
+  value: number;
 };
 
 const ListItems: ListItemType[] = [
   {
     text: 'Home',
     to: '/',
+    value: 0,
   },
   {
     text: 'Services',
     to: '/services',
+    value: 1,
   },
   {
     text: 'The Revolution',
     to: '/revolution',
+    value: 2,
   },
   {
     text: 'About Us',
     to: '/about',
+    value: 3,
   },
   {
     text: 'Contact Us',
     to: '/contact',
+    value: 4,
   },
   {
     text: 'Free Estimate',
     to: '/estimate',
+    value: 5,
   },
 ];
 
@@ -63,13 +74,16 @@ const useStyles = makeStyles((theme: Theme) =>
       color: 'white',
       opacity: 0.7,
     },
+    drawerTextSelected: {
+      opacity: 1,
+    },
     estimateContainer: {
       backgroundColor: theme.palette.common.orange,
     },
   })
 );
 
-export const NavDrawer: FC = () => {
+export const NavDrawer: FC<NavDrawerProps> = ({ tabValue }) => {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
 
@@ -98,8 +112,13 @@ export const NavDrawer: FC = () => {
               }}
               className={
                 Item.to === '/estimate' ? classes.estimateContainer : undefined
-              }>
-              <ListItemText disableTypography className={classes.drawerText}>
+              }
+              selected={Item.value === tabValue}>
+              <ListItemText
+                disableTypography
+                className={`${classes.drawerText} ${
+                  Item.value === tabValue && classes.drawerTextSelected
+                }`}>
                 {Item.text}
               </ListItemText>
             </ListItem>
