@@ -1,5 +1,5 @@
-import React, { FC, ChangeEvent, MouseEvent, useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { FC, ChangeEvent, MouseEvent, useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Menu from '@material-ui/core/Menu';
@@ -15,24 +15,29 @@ export type NavTabsProps = {
 type menuOptionType = {
   name: string;
   link: string;
+  index: number;
 };
 
 const menuOptions: menuOptionType[] = [
   {
     name: 'Services',
     link: '/services',
+    index: 0,
   },
   {
     name: 'Custome Software Development',
     link: '/customsoftware',
+    index: 1,
   },
   {
     name: 'Mobile App Development',
     link: '/mobileapps',
+    index: 2,
   },
   {
     name: 'Website Development',
     link: '/websites',
+    index: 3,
   },
 ];
 
@@ -62,7 +67,10 @@ const useStyles = makeStyles((theme: Theme) =>
       ...theme.typography.tab,
       opacity: 0.7,
       '&:hover': {
-        opacity: 1,
+        opacity: 0.9,
+      },
+      '&:focus': {
+        opacity: 1.1,
       },
     },
   })
@@ -70,6 +78,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export const NavTabs: FC<NavTabsProps> = ({ tabValue, handleTabChange }) => {
   const classes = useStyles();
+  const location = useLocation();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [open, setOpen] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -88,6 +97,15 @@ export const NavTabs: FC<NavTabsProps> = ({ tabValue, handleTabChange }) => {
     setAnchorEl(null);
     setOpen(false);
   };
+
+  useEffect(() => {
+    menuOptions.forEach((menu) => {
+      if (menu.link === location.pathname && menu.index !== selectedIndex) {
+        setSelectedIndex(menu.index);
+      }
+    });
+  }, [location, selectedIndex]);
+
   return (
     <>
       <Tabs
@@ -124,7 +142,12 @@ export const NavTabs: FC<NavTabsProps> = ({ tabValue, handleTabChange }) => {
           to='/contact'
         />
       </Tabs>
-      <Button variant='contained' color='secondary' className={classes.button}>
+      <Button
+        variant='contained'
+        color='secondary'
+        className={classes.button}
+        component={Link}
+        to='/estimate'>
         Free Estimate
       </Button>
 
