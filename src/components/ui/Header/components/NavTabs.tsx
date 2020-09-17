@@ -1,5 +1,6 @@
 import React, { FC, ChangeEvent, MouseEvent, useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Menu from '@material-ui/core/Menu';
@@ -10,6 +11,14 @@ import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 export type NavTabsProps = {
   tabValue: number;
   handleTabChange: (e: ChangeEvent<{}>, newValue: number) => void;
+};
+
+type TabItemType = {
+  text: string;
+  to: string;
+  'aria-owns'?: string | undefined;
+  'aria-haspopup'?: boolean | undefined;
+  onMouseOver?: (event: MouseEvent<HTMLElement>) => void;
 };
 
 type menuOptionType = {
@@ -63,6 +72,9 @@ const useStyles = makeStyles((theme: Theme) =>
       backgroundColor: theme.palette.common.blue,
       color: 'white',
     },
+    menuLayer: {
+      zIndex: 1302,
+    },
     menuItem: {
       ...theme.typography.tab,
       opacity: 0.7,
@@ -79,6 +91,7 @@ const useStyles = makeStyles((theme: Theme) =>
 export const NavTabs: FC<NavTabsProps> = ({ tabValue, handleTabChange }) => {
   const classes = useStyles();
   const location = useLocation();
+
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [open, setOpen] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -106,6 +119,32 @@ export const NavTabs: FC<NavTabsProps> = ({ tabValue, handleTabChange }) => {
     });
   }, [location, selectedIndex]);
 
+  const TabItems: TabItemType[] = [
+    {
+      text: 'Home',
+      to: '/',
+    },
+    {
+      text: 'Services',
+      to: '/services',
+      'aria-owns': anchorEl ? 'services-menu' : undefined,
+      'aria-haspopup': anchorEl ? true : undefined,
+      onMouseOver: (event) => handleMenuOpen(event),
+    },
+    {
+      text: 'The Revolution',
+      to: '/revolution',
+    },
+    {
+      text: 'About Us',
+      to: '/about',
+    },
+    {
+      text: 'Contact Us',
+      to: '/contact',
+    },
+  ];
+
   return (
     <>
       <Tabs
@@ -113,34 +152,20 @@ export const NavTabs: FC<NavTabsProps> = ({ tabValue, handleTabChange }) => {
         value={tabValue}
         onChange={handleTabChange}
         indicatorColor='primary'>
-        <Tab className={classes.tab} label='Home' component={Link} to='/' />
-        <Tab
-          className={classes.tab}
-          label='Services'
-          component={Link}
-          to='/services'
-          aria-owns={anchorEl ? 'services-menu' : undefined}
-          aria-haspopup={anchorEl ? true : undefined}
-          onMouseOver={handleMenuOpen}
-        />
-        <Tab
-          className={classes.tab}
-          label='The Revolution'
-          component={Link}
-          to='/revolution'
-        />
-        <Tab
-          className={classes.tab}
-          label='About Us'
-          component={Link}
-          to='/about'
-        />
-        <Tab
-          className={classes.tab}
-          label='Contact Us'
-          component={Link}
-          to='/contact'
-        />
+        {TabItems.map((Item) => {
+          return (
+            <Tab
+              key={Item.text}
+              className={classes.tab}
+              label={Item.text}
+              component={Link}
+              to={Item.to}
+              aria-owns={Item['aria-owns']}
+              aria-haspopup={Item['aria-haspopup']}
+              onMouseOver={Item.onMouseOver}
+            />
+          );
+        })}
       </Tabs>
       <Button
         variant='contained'
@@ -158,6 +183,7 @@ export const NavTabs: FC<NavTabsProps> = ({ tabValue, handleTabChange }) => {
         onClose={handleMenuClose}
         MenuListProps={{ onMouseLeave: handleMenuClose }}
         classes={{ paper: classes.menu }}
+        style={{ zIndex: 1302 }}
         elevation={0}>
         {/* elevation for layer */}
         {menuOptions.map((option, index) => (

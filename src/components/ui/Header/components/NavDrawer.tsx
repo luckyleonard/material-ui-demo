@@ -75,10 +75,23 @@ const useStyles = makeStyles((theme: Theme) =>
       opacity: 0.7,
     },
     drawerTextSelected: {
-      opacity: 1,
+      '& .MuiListItemText-root': {
+        //当drawerItem选中时候需要向下选择一层到ItemText的样式进行覆盖
+        opacity: 1,
+      },
     },
     estimateContainer: {
       backgroundColor: theme.palette.common.orange,
+    },
+    toolbarMargin: {
+      ...theme.mixins.toolbar, //将toolbar的css解构给下面的占位div
+      marginBottom: '3rem',
+      [theme.breakpoints.down('sm')]: {
+        marginBottom: '2rem',
+      },
+      [theme.breakpoints.down('xs')]: {
+        marginBottom: '1.5rem',
+      },
     },
   })
 );
@@ -100,6 +113,7 @@ export const NavDrawer: FC<NavDrawerProps> = ({ tabValue }) => {
           setOpen(false);
         }}
         classes={{ paper: classes.drawer }}>
+        <div className={classes.toolbarMargin} />
         <List disablePadding>
           {ListItems.map((Item) => (
             <ListItem
@@ -113,18 +127,16 @@ export const NavDrawer: FC<NavDrawerProps> = ({ tabValue }) => {
               className={
                 Item.to === '/estimate' ? classes.estimateContainer : undefined
               }
+              classes={{ selected: classes.drawerTextSelected }}
               selected={Item.value === tabValue}>
-              <ListItemText
-                disableTypography
-                className={`${classes.drawerText} ${
-                  Item.value === tabValue && classes.drawerTextSelected
-                }`}>
+              <ListItemText disableTypography className={classes.drawerText}>
                 {Item.text}
               </ListItemText>
             </ListItem>
           ))}
         </List>
       </SwipeableDrawer>
+
       <IconButton
         className={classes.drawIconContainer}
         onClick={() => {

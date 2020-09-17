@@ -74,6 +74,9 @@ const useStyles = makeStyles((theme: Theme) =>
         backgroundColor: 'transparent',
       },
     },
+    appbar: {
+      zIndex: theme.zIndex.modal + 1,
+    },
   })
 );
 
@@ -103,7 +106,7 @@ const Header: FC = () => {
   return (
     <>
       <ElevationScroll>
-        <AppBar position='fixed'>
+        <AppBar position='fixed' className={classes.appbar}>
           <Toolbar disableGutters>
             {/* disableGutters 禁止左右margin */}
             <Button
