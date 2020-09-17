@@ -1,13 +1,17 @@
 import React from 'react';
+
+import CssBaseline from '@material-ui/core/CssBaseline';
 import { ThemeProvider } from '@material-ui/core/styles';
 import theme from './components/ui/theme';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import Header from './components/ui/Header';
+import Footer from 'components/ui/Footer';
 
 function App() {
   return (
     <ThemeProvider theme={theme}>
+      <CssBaseline />
       <BrowserRouter>
         <Header />
         <Switch>
@@ -39,6 +43,7 @@ function App() {
             <div>estimate</div>
           </Route>
         </Switch>
+        <Footer />
       </BrowserRouter>
     </ThemeProvider>
   );
