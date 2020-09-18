@@ -152,17 +152,17 @@ export const NavTabs: FC<NavTabsProps> = ({ tabValue, handleTabChange }) => {
         value={tabValue}
         onChange={handleTabChange}
         indicatorColor='primary'>
-        {TabItems.map((Item) => {
+        {TabItems.map((item) => {
           return (
             <Tab
-              key={Item.text}
+              key={item.text}
               className={classes.tab}
-              label={Item.text}
+              label={item.text}
               component={Link}
-              to={Item.to}
-              aria-owns={Item['aria-owns']}
-              aria-haspopup={Item['aria-haspopup']}
-              onMouseOver={Item.onMouseOver}
+              to={item.to}
+              aria-owns={item['aria-owns']}
+              aria-haspopup={item['aria-haspopup']}
+              onMouseOver={item.onMouseOver}
             />
           );
         })}
