@@ -5,8 +5,9 @@ import { ThemeProvider } from '@material-ui/core/styles';
 import theme from './components/ui/theme';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
-import Header from './components/ui/Header';
+import Header from 'components/ui/Header';
 import Footer from 'components/ui/Footer';
+import LandingPage from 'containers/LandingPage';
 
 function App() {
   return (
@@ -17,7 +18,7 @@ function App() {
         <body style={{ minHeight: '60vh' }}>
           <Switch>
             <Route exact path='/'>
-              <div>Home</div>
+              <LandingPage />
             </Route>
             <Route exact path='/services'>
               <div>services</div>
