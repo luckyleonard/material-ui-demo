@@ -6,6 +6,9 @@ import Hidden from '@material-ui/core/Hidden';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 
 import footerAdornment from 'assets/Footer Adornment.svg';
+import facebook from 'assets/facebook.svg';
+import twitter from 'assets/twitter.svg';
+import instagram from 'assets/instagram.svg';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -19,10 +22,10 @@ const useStyles = makeStyles((theme: Theme) =>
     adornment: {
       width: '25rem',
       verticalAlign: 'bottom',
-      [theme.breakpoints.down('md')]: {
+      [theme.breakpoints.down('sm')]: {
         width: '21rem',
       },
-      [theme.breakpoints.down('md')]: {
+      [theme.breakpoints.down('xs')]: {
         width: '15rem',
       },
     },
@@ -39,14 +42,35 @@ const useStyles = makeStyles((theme: Theme) =>
       fontWeight: 700,
       textDecoration: 'none',
     },
+    icon: {
+      height: '3rem',
+      width: '3rem',
+      [theme.breakpoints.down('xs')]: {
+        height: '1.5rem',
+        width: '1.5rem',
+      },
+    },
+    iconContainer: {
+      position: 'absolute',
+      right: '1.5rem',
+      marginTop: '-6rem',
+      [theme.breakpoints.down('xs')]: {
+        right: '0.75rem',
+      },
+    },
   })
 );
+
+/**
+ * @todo refactor Link area and Link Icon area
+ */
 
 const Footer: FC = () => {
   const classes = useStyles();
   return (
     <footer className={classes.footer}>
-      <Hidden mdDown>
+      {/*Link area*/}
+      <Hidden smDown>
         <Grid container justify='center' className={classes.mainContainer}>
           <Grid item className={classes.gridItem}>
             <Grid container direction='column' spacing={2}>
@@ -151,6 +175,37 @@ const Footer: FC = () => {
         src={footerAdornment}
         className={classes.adornment}
       />
+      {/* Link Icon Area*/}
+      <Grid
+        container
+        className={classes.iconContainer}
+        justify='flex-end'
+        spacing={2}>
+        <Grid
+          item
+          component={'a'}
+          href='https://www.facebook.com'
+          rel='noopener noreferrer'
+          target='_blank'>
+          <img alt='facebook icon' src={facebook} className={classes.icon} />
+        </Grid>
+        <Grid
+          item
+          component={'a'}
+          href='https://www.twitter.com'
+          rel='noopener noreferrer'
+          target='_blank'>
+          <img alt='twitter icon' src={twitter} className={classes.icon} />
+        </Grid>
+        <Grid
+          item
+          component={'a'}
+          href='https://www.instagram.com'
+          rel='noopener noreferrer'
+          target='_blank'>
+          <img alt='instagram icon' src={instagram} className={classes.icon} />
+        </Grid>
+      </Grid>
     </footer>
   );
 };
