@@ -46,6 +46,12 @@ const theme = createMuiTheme({
       textTransform: 'none',
       color: 'white',
     },
+    h2: {
+      fontFamily: 'Raleway',
+      fontSize: '2rem',
+      fontWeight: 700,
+      color: `${arcBlue}`,
+    },
   },
 });
 

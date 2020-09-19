@@ -15,7 +15,7 @@ function App() {
       <CssBaseline />
       <BrowserRouter>
         <Header />
-        <body style={{ minHeight: '60vh' }}>
+        <body style={{ minHeight: '50vh' }}>
           <Switch>
             <Route exact path='/'>
               <LandingPage />
