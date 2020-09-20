@@ -11,26 +11,30 @@ declare module '@material-ui/core/styles/createTypography' {
   interface Typography {
     tab: TypographyStyle;
     estimate: TypographyStyle;
+    learnMoreButton: TypographyStyle;
   } //define the return Typography in the Theme
   interface TypographyOptions {
     tab?: TypographyStyleOptions;
     estimate?: TypographyStyleOptions;
+    learnMoreButton?: TypographyStyleOptions;
   } //allow it to config in the Options
 }
 
 const arcBlue = '#0B72B9';
 const arcOrange = '#FFBA60';
+const arcGray = '#868686';
+
 const theme = createMuiTheme({
   palette: {
     common: {
-      blue: `${arcBlue}`,
-      orange: `${arcOrange}`,
+      blue: arcBlue,
+      orange: arcOrange,
     },
     primary: {
-      main: `${arcBlue}`,
+      main: arcBlue,
     },
     secondary: {
-      main: `${arcOrange}`,
+      main: arcOrange,
     },
   },
   typography: {
@@ -50,7 +54,30 @@ const theme = createMuiTheme({
       fontFamily: 'Raleway',
       fontSize: '2rem',
       fontWeight: 700,
-      color: `${arcBlue}`,
+      color: arcBlue,
+    },
+    h3: {
+      fontFamily: 'Pacifico',
+      fontSize: '2rem',
+      color: arcBlue,
+    },
+    h4: {
+      fontFamily: 'Raleway',
+      fontSize: '1.75rem',
+      fontWeight: 700,
+      color: arcBlue,
+    },
+    subtitle1: {
+      fontSize: '1.25rem',
+      fontWeight: 300,
+      color: arcGray,
+    },
+    learnMoreButton: {
+      font: 'bold Roboto',
+      textTransform: 'none',
+      color: arcBlue,
+      border: `2px solid ${arcBlue}`,
+      borderRadius: 50,
     },
   },
 });
