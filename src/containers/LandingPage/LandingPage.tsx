@@ -2,7 +2,12 @@ import React, { FC } from 'react';
 
 import { Grid } from '@material-ui/core';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-import { HeroBlock, ServiceBlock } from './components';
+import {
+  HeroBlock,
+  MobileBlock,
+  ServiceBlock,
+  WebSiteBlock,
+} from './components';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -25,6 +30,8 @@ const LandingPage: FC = () => {
     <Grid container direction='column' className={classes.mainContainer}>
       <HeroBlock />
       <ServiceBlock />
+      <MobileBlock />
+      <WebSiteBlock />
     </Grid>
   );
 };
