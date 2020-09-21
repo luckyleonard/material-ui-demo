@@ -5,6 +5,7 @@ import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import {
   HeroBlock,
   MobileBlock,
+  RevolutionBlock,
   ServiceBlock,
   WebSiteBlock,
 } from './components';
@@ -32,6 +33,7 @@ const LandingPage: FC = () => {
       <ServiceBlock />
       <MobileBlock />
       <WebSiteBlock />
+      <RevolutionBlock />
     </Grid>
   );
 };
