@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-import { Button, Grid, Typography } from '@material-ui/core';
+import { Button, Grid, Typography, useMediaQuery } from '@material-ui/core';
 import {
   makeStyles,
   createStyles,
@@ -14,7 +14,7 @@ import infoBackground from 'assets/infoBackground.svg';
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     blockContainer: {
-      height: '90vh',
+      height: '100vh',
       backgroundImage: `url(${infoBackground})`,
       backgroundPosition: 'center',
       backgroundRepeat: 'no-repeat',
@@ -22,6 +22,19 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     aboutUsItem: {
       marginLeft: '5rem',
+      [theme.breakpoints.down('sm')]: {
+        marginLeft: 0,
+        textAlign: 'center',
+      },
+    },
+    contactUsItem: {
+      marginRight: '5rem',
+      textAlign: 'right',
+      [theme.breakpoints.down('sm')]: {
+        marginRight: 0,
+        textAlign: 'center',
+      },
+      // 文字及button向右对齐
     },
     learnMoreButton: {
       ...theme.typography.learnMoreButton,
@@ -43,19 +56,41 @@ const useStyles = makeStyles((theme: Theme) =>
 export const InformationBlock: FC = () => {
   const classes = useStyles();
   const theme = useTheme();
+  const matchXS = useMediaQuery(theme.breakpoints.down('xs'));
 
   return (
     <Grid item>
       <Grid
         container
-        direction='row'
+        direction={matchXS ? 'column' : 'row'}
         alignItems='center'
-        className={classes.blockContainer}>
-        <Grid item className={classes.aboutUsItem}>
+        className={classes.blockContainer}
+        spacing={matchXS ? 10 : 0}>
+        <Grid item sm className={classes.aboutUsItem}>
           <Typography variant='h2' gutterBottom style={{ color: 'white' }}>
             About us
           </Typography>
           <Typography variant='subtitle2'>Let's get personal.</Typography>
+          <Button className={classes.learnMoreButton} variant='outlined'>
+            <span>Learn More</span>
+            <ButtonArrow
+              width={10}
+              height={10}
+              fill={theme.palette.common.white}
+            />
+          </Button>
+        </Grid>
+        <Grid item sm className={classes.contactUsItem}>
+          <Typography variant='h2' gutterBottom style={{ color: 'white' }}>
+            Contact us
+          </Typography>
+          <Typography variant='subtitle2'>
+            Say hello!!
+            <span role='img' aria-label='waving hand'>
+              👋
+            </span>
+            {/* emoji要用span包裹起来 */}
+          </Typography>
           <Button className={classes.learnMoreButton} variant='outlined'>
             <span>Learn More</span>
             <ButtonArrow
