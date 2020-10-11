@@ -10,6 +10,7 @@ import {
   ServiceBlock,
   WebSiteBlock,
 } from './components';
+import CallToAction from 'components/ui/CallToAction';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -36,6 +37,7 @@ const LandingPage: FC = () => {
       <WebSiteBlock />
       <RevolutionBlock />
       <InformationBlock />
+      <CallToAction />
     </Grid>
   );
 };
