@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import { Link } from 'react-router-dom';
 
 import { Button, Grid, Typography, useMediaQuery } from '@material-ui/core';
 import {
@@ -76,7 +77,11 @@ export const ServiceBlock: FC = () => {
             Complete digital solutions, from investigation to{' '}
             <span className={classes.specialText}>celebration.</span>
           </Typography>
-          <Button className={classes.learnMoreButton} variant='outlined'>
+          <Button
+            className={classes.learnMoreButton}
+            variant='outlined'
+            component={Link}
+            to='/customsoftware'>
             <span>Learn More</span>
             <ButtonArrow
               width={10}

@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import { Link } from 'react-router-dom';
 
 import { Button, Grid, Typography, useMediaQuery } from '@material-ui/core';
 import {
@@ -75,7 +76,11 @@ export const WebSiteBlock: FC = () => {
           <Typography variant='subtitle1'>
             Optimized for Search Engines. Build for Speed.
           </Typography>
-          <Button className={classes.learnMoreButton} variant='outlined'>
+          <Button
+            className={classes.learnMoreButton}
+            variant='outlined'
+            component={Link}
+            to='/websites'>
             <span>Learn More</span>
             <ButtonArrow
               width={10}

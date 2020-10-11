@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import { Link } from 'react-router-dom';
 
 import { Button, Grid, Typography } from '@material-ui/core';
 import {
@@ -82,12 +83,20 @@ export const HeroBlock: FC = () => {
           </Typography>
           <Grid container justify='center' className={classes.buttonContainer}>
             <Grid item>
-              <Button className={classes.estimateButton} variant='contained'>
+              <Button
+                className={classes.estimateButton}
+                variant='contained'
+                component={Link}
+                to='/estimate'>
                 Free Estimate
               </Button>
             </Grid>
             <Grid item>
-              <Button className={classes.learnMoreButton} variant='outlined'>
+              <Button
+                className={classes.learnMoreButton}
+                variant='outlined'
+                component={Link}
+                to='/revolution'>
                 <span>Learn More</span>
                 <ButtonArrow
                   width={15}

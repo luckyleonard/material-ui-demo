@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import { Link } from 'react-router-dom';
 
 import { Button, Grid, Typography, useMediaQuery } from '@material-ui/core';
 import {
@@ -76,7 +77,11 @@ export const MobileBlock: FC = () => {
             Integrate your web experience or create a standalone app
             {matchSM ? null : <br />}with either mobile platform.
           </Typography>
-          <Button className={classes.learnMoreButton} variant='outlined'>
+          <Button
+            className={classes.learnMoreButton}
+            variant='outlined'
+            component={Link}
+            to='/mobileapps'>
             <span>Learn More</span>
             <ButtonArrow
               width={10}

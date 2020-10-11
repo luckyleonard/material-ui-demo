@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import { Link } from 'react-router-dom';
 
 import { Button, Grid, Typography, useMediaQuery } from '@material-ui/core';
 import {
@@ -14,7 +15,7 @@ import infoBackground from 'assets/infoBackground.svg';
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     blockContainer: {
-      height: '100vh',
+      height: 'calc(100vh - 4rem)',
       backgroundImage: `url(${infoBackground})`,
       backgroundPosition: 'center',
       backgroundRepeat: 'no-repeat',
@@ -64,14 +65,18 @@ export const InformationBlock: FC = () => {
         container
         direction={matchXS ? 'column' : 'row'}
         alignItems='center'
-        className={classes.blockContainer}
-        spacing={matchXS ? 10 : 0}>
+        justify={matchXS ? 'space-around' : undefined}
+        className={classes.blockContainer}>
         <Grid item sm className={classes.aboutUsItem}>
           <Typography variant='h2' gutterBottom style={{ color: 'white' }}>
             About us
           </Typography>
           <Typography variant='subtitle2'>Let's get personal.</Typography>
-          <Button className={classes.learnMoreButton} variant='outlined'>
+          <Button
+            className={classes.learnMoreButton}
+            variant='outlined'
+            component={Link}
+            to='/about'>
             <span>Learn More</span>
             <ButtonArrow
               width={10}
@@ -91,7 +96,11 @@ export const InformationBlock: FC = () => {
             </span>
             {/* emoji要用span包裹起来 */}
           </Typography>
-          <Button className={classes.learnMoreButton} variant='outlined'>
+          <Button
+            className={classes.learnMoreButton}
+            variant='outlined'
+            component={Link}
+            to='/contact'>
             <span>Learn More</span>
             <ButtonArrow
               width={10}

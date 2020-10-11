@@ -19,7 +19,9 @@ type PathToTabType = {
   pathes: string[];
   value: number;
 };
-
+/**
+ * @todo rebuild the route link with route.ts for an static path and a dynamic path with url()
+ */
 const pathToTab: PathToTabType[] = [
   {
     pathes: ['/'],

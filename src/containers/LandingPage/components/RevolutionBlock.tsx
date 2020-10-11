@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import { Link } from 'react-router-dom';
 
 import { Button, Grid, Typography, Card, CardContent } from '@material-ui/core';
 import {
@@ -14,7 +15,7 @@ import revolutionBackground from 'assets/repeatingBackground.svg';
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     blockContainer: {
-      height: '200vh',
+      height: '120vh',
       marginTop: '20vh',
       backgroundImage: `url(${revolutionBackground})`,
       backgroundPosition: 'center',
@@ -67,7 +68,11 @@ export const RevolutionBlock: FC = () => {
                   Visionary insights coupled with cutting-edge technology is a
                   recipe for revolution
                 </Typography>
-                <Button className={classes.learnMoreButton} variant='outlined'>
+                <Button
+                  className={classes.learnMoreButton}
+                  variant='outlined'
+                  component={Link}
+                  to='/revolution'>
                   <span>Learn More</span>
                   <ButtonArrow
                     width={15}
