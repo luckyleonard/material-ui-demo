@@ -10,6 +10,8 @@ import Footer from 'components/ui/Footer';
 import LandingPage from 'containers/LandingPage';
 import ServicePage from 'containers/ServicePage';
 import CustomSoftwarePage from 'containers/CustomSoftwarePage';
+import MobileDevelopPage from 'containers/MobileDevelopPage';
+import WebsiteDevelopPage from 'containers/WebsiteDevelopPage';
 
 function App() {
   return (
@@ -29,10 +31,10 @@ function App() {
               <CustomSoftwarePage />
             </Route>
             <Route exact path='/mobileapps'>
-              <div>mobileapps</div>
+              <MobileDevelopPage />
             </Route>
             <Route exact path='/websites'>
-              <div>websites</div>
+              <WebsiteDevelopPage />
             </Route>
             <Route exact path='/revolution'>
               <div>revolution</div>
