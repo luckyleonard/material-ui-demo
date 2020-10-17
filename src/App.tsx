@@ -8,6 +8,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Header from 'components/ui/Header';
 import Footer from 'components/ui/Footer';
 import LandingPage from 'containers/LandingPage';
+import ServicePage from 'containers/ServicePage';
 
 function App() {
   return (
@@ -21,7 +22,7 @@ function App() {
               <LandingPage />
             </Route>
             <Route exact path='/services'>
-              <div>services</div>
+              <ServicePage />
             </Route>
             <Route exact path='/customsoftware'>
               <div>customsoftware</div>
