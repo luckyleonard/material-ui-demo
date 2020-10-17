@@ -9,6 +9,7 @@ import Header from 'components/ui/Header';
 import Footer from 'components/ui/Footer';
 import LandingPage from 'containers/LandingPage';
 import ServicePage from 'containers/ServicePage';
+import CustomSoftwarePage from 'containers/CustomSoftwarePage';
 
 function App() {
   return (
@@ -25,7 +26,7 @@ function App() {
               <ServicePage />
             </Route>
             <Route exact path='/customsoftware'>
-              <div>customsoftware</div>
+              <CustomSoftwarePage />
             </Route>
             <Route exact path='/mobileapps'>
               <div>mobileapps</div>
