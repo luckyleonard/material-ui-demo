@@ -12,6 +12,7 @@ import ServicePage from 'containers/ServicePage';
 import CustomSoftwarePage from 'containers/CustomSoftwarePage';
 import MobileDevelopPage from 'containers/MobileDevelopPage';
 import WebsiteDevelopPage from 'containers/WebsiteDevelopPage';
+import RevolutionPage from 'containers/RevolutionPage';
 
 function App() {
   return (
@@ -37,7 +38,7 @@ function App() {
               <WebsiteDevelopPage />
             </Route>
             <Route exact path='/revolution'>
-              <div>revolution</div>
+              <RevolutionPage />
             </Route>
             <Route exact path='/about'>
               <div>about</div>
