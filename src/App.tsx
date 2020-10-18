@@ -13,6 +13,7 @@ import CustomSoftwarePage from 'containers/CustomSoftwarePage';
 import MobileDevelopPage from 'containers/MobileDevelopPage';
 import WebsiteDevelopPage from 'containers/WebsiteDevelopPage';
 import RevolutionPage from 'containers/RevolutionPage';
+import AboutUsPage from 'containers/AboutUsPage';
 
 function App() {
   return (
@@ -41,7 +42,7 @@ function App() {
               <RevolutionPage />
             </Route>
             <Route exact path='/about'>
-              <div>about</div>
+              <AboutUsPage />
             </Route>
             <Route exact path='/contact'>
               <div>contact</div>

@@ -477,7 +477,7 @@ export default function RevolutionPage() {
         direction={matchesMD ? 'column' : 'row'}
         className={classes.rowContainer}
         justify={matchesMD ? 'center' : undefined}
-        style={{ backgroundColor: '#FBB03B', height: '90em' }}>
+        style={{ backgroundColor: '#FBB03B', maxHeight: '120em' }}>
         <Grid
           item
           container
@@ -562,10 +562,9 @@ export default function RevolutionPage() {
         item
         container
         direction={matchesMD ? 'column' : 'row'}
-        wrap='nowrap'
         className={classes.rowContainer}
         justify={matchesMD ? 'center' : undefined}
-        style={{ backgroundColor: '#C1272D', height: '90em' }}>
+        style={{ backgroundColor: '#C1272D', maxHeight: '120em' }}>
         <Grid
           item
           container
