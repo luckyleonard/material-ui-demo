@@ -1,7 +1,7 @@
 import React, { useState, ChangeEvent } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { makeStyles, useTheme, Theme } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
@@ -14,13 +14,13 @@ import Snackbar from '@material-ui/core/Snackbar';
 
 import ButtonArrow from 'components/ButtonArrow';
 
-import background from '../assets/background.jpg';
-import mobileBackground from '../assets/mobileBackground.jpg';
-import phoneIcon from '../assets/phone.svg';
-import emailIcon from '../assets/email.svg';
-import airplane from '../assets/send.svg';
+import background from 'assets/background.jpg';
+import mobileBackground from 'assets/mobileBackground.jpg';
+import phoneIcon from 'assets/phone.svg';
+import emailIcon from 'assets/email.svg';
+import airplane from 'assets/send.svg';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme: Theme) => ({
   background: {
     backgroundImage: `url(${background})`,
     backgroundPosition: 'center',
@@ -328,15 +328,15 @@ export default function ContactUsPage() {
               : matchesSM
               ? 0
               : matchesMD
-              ? '15em'
-              : '25em',
+              ? '1em'
+              : '5em',
             paddingRight: matchesXS
               ? 0
               : matchesSM
               ? 0
               : matchesMD
-              ? '15em'
-              : '25em',
+              ? '1em'
+              : '5em',
           },
         }}>
         <DialogContent>
@@ -431,7 +431,7 @@ export default function ContactUsPage() {
         anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
         message={alertMessage}
         autoHideDuration={4000}
-        onClose={() => setAlert(false)}
+        onClose={() => setAlert({ open: false, color: '' })}
       />
       <Grid
         item
@@ -466,8 +466,7 @@ export default function ContactUsPage() {
                   component={Link}
                   to='/revolution'
                   variant='outlined'
-                  className={classes.learnButton}
-                  onClick={() => props.setValue(2)}>
+                  className={classes.learnButton}>
                   <span style={{ marginRight: 5 }}>Learn More</span>
                   <ButtonArrow
                     width={10}
@@ -484,8 +483,7 @@ export default function ContactUsPage() {
             component={Link}
             to='/estimate'
             variant='contained'
-            className={classes.estimateButton}
-            onClick={() => props.setValue(5)}>
+            className={classes.estimateButton}>
             Free Estimate
           </Button>
         </Grid>

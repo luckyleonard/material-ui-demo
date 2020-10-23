@@ -14,6 +14,7 @@ import MobileDevelopPage from 'containers/MobileDevelopPage';
 import WebsiteDevelopPage from 'containers/WebsiteDevelopPage';
 import RevolutionPage from 'containers/RevolutionPage';
 import AboutUsPage from 'containers/AboutUsPage';
+import ContactUsPage from 'containers/ContactUsPage';
 
 function App() {
   return (
@@ -45,7 +46,7 @@ function App() {
               <AboutUsPage />
             </Route>
             <Route exact path='/contact'>
-              <div>contact</div>
+              <ContactUsPage />
             </Route>
             <Route exact path='/estimate'>
               <div>estimate</div>
