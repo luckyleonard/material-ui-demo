@@ -139,34 +139,33 @@ export default function ContactUsPage() {
   const onConfirm = () => {
     setLoading(true);
 
-    axios
-      .get(
-        'https://us-central1-material-ui-course.cloudfunctions.net/sendMail',
-        {
+    if (process.env.REACT_APP_MAIL_LINK) {
+      axios
+        .get(process.env.REACT_APP_MAIL_LINK, {
           params: {
             email: email,
             name: name,
             phone: phone,
             message: message,
           },
-        }
-      )
-      .then((res) => {
-        setLoading(false);
-        setOpen(false);
-        setName('');
-        setEmail('');
-        setPhone('');
-        setMessage('');
-        setAlert({ open: true, color: '#4BB543' });
-        setAlertMesssage('Message sent successfully!');
-      })
-      .catch((err) => {
-        setLoading(false);
-        setAlert({ open: true, color: '#FF3232' });
-        setAlertMesssage('Something went wrong! Please try again.');
-        console.error(err);
-      });
+        })
+        .then((res) => {
+          setLoading(false);
+          setOpen(false);
+          setName('');
+          setEmail('');
+          setPhone('');
+          setMessage('');
+          setAlert({ open: true, color: '#4BB543' });
+          setAlertMesssage('Message sent successfully!');
+        })
+        .catch((err) => {
+          setLoading(false);
+          setAlert({ open: true, color: '#FF3232' });
+          setAlertMesssage('Something went wrong! Please try again.');
+          console.error(err);
+        });
+    }
   };
 
   const buttonContents = (
@@ -245,9 +244,9 @@ export default function ContactUsPage() {
                     fontSize: '1rem',
                   }}>
                   <a
-                    href='mailto:zachary@gmail.com'
+                    href='mailto:leonard@gmail.com'
                     style={{ textDecoration: 'none', color: 'inherit' }}>
-                    zachary@gmail.com
+                    leonard@gmail.com
                   </a>
                 </Typography>
               </Grid>
